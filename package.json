@@ -1,0 +1,36 @@
+{
+  "name": "apinode",
+  "version": "1.0.0",
+  "description": "ApiNodeJS + MongoDB - by FDAndrade",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -- -r esm -r dotenv/config src/server.js",
+    "build": "sucrase ./src -d ./outDir --transforms imports",
+    "start": "pm2 start src/server.js --watch --no-daemon --node-args=\"-r esm --inspect=0.0.0.0:9229\""
+  },
+  "keywords": [],
+  "author": "FDAndrade",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byfdandrade/api-node-mongodb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byfdandrade/api-node-mongodb/issues"
+  },
+  "homepage": "https://github.com/byfdandrade/api-node-mongodb#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^14.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.2",
+    "mongodb": "^4.2.2",
+    "mongoose": "^6.1.7",
+    "pm2": "^5.1.2",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "sucrase": "^3.20.3"
+  }
+}

@@ -1,0 +1,45 @@
+version: "3.6"
+services:
+  db:
+    image: mongo:4.2
+    container_name: dbmongoapi
+    restart: always
+    ports:
+      - ${DB_PORT}:27017
+  #  networks:
+  #    - my_network
+    volumes: 
+      - /Volumes/Dados/Docker/mongodb:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}
+
+  app:
+    image: node:latest
+    container_name: app_node_api
+    restart: always
+    env_file:
+     - .env
+    depends_on:
+      - db
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - ${PORT_DEBUG_NODE}:${PORT_DEBUG_NODE}
+    expose:
+      - ${PORT_DEBUG_NODE}
+ #   networks:
+ #     - my_network
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: yarn start
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+#networks:
+#  my_network:
+#    driver: bridge
