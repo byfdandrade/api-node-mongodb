@@ -24,6 +24,7 @@
     "dotenv": "^14.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.7",
     "pm2": "^5.1.2",
