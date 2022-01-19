@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs/dist/bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/User";
+import configAuth from "../../config/auth";
 
 class LoginController {
     async store(req, res) {
@@ -30,7 +32,8 @@ class LoginController {
                 name: checkUser.name,
                 cpf: checkUser.cpf,
                 email: checkUser.email
-            }
+            },
+            token: jwt.sign({id: checkUser._id}, configAuth.secret, {expiresIn: configAuth.expiresIn})
         })
     }
 }
