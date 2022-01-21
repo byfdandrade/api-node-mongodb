@@ -27,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.7",
+    "mongoose-paginate-v2": "^1.5.0",
     "pm2": "^5.1.2",
     "yup": "^0.32.11"
   },
