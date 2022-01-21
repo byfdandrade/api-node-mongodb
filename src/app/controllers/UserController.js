@@ -7,11 +7,11 @@ class UserController {
     //Listar Usuários
     async index(req, res) {
         try {
-            const {page = 1} = req.query;
-            const {limit = 40} = req.query;
+            const { page = 1 } = req.query;
+            const { limit = 40 } = req.query;
             const query = {};
-            const options = {select: "_id name cpf email", page, limit};
-             
+            const options = { select: "_id name cpf email", page, limit };
+
             const users = await User.paginate(query, options);
             return res.json({
                 error: false,
@@ -19,9 +19,9 @@ class UserController {
             });
 
         } catch (err) {
-            return res.status(400).json({
+            return res.status(500).json({
                 error: true,
-                code: 102,
+                code: 103,
                 message: "Error: Não foi possivel executar a solicitação."
             });
         }
@@ -34,9 +34,9 @@ class UserController {
             const checkCpf = await User.findOne({ cpf: req.body.cpf });
 
             if (checkCpf) {
-                return res.status(400).json({
+                return res.status(401).json({
                     error: true,
-                    code: 102,
+                    code: 104,
                     message: "Error: Já existe um usuário cadastrado com este CPF."
                 });
             }
@@ -53,9 +53,9 @@ class UserController {
             dados.password = await bcrypt.hash(dados.password, 8);
 
             const user = await User.create(req.body, (err) => {
-                if (err) return res.status(400).json({
+                if (err) return res.status(500).json({
                     error: true,
-                    code: err.code,
+                    code: 105,
                     message: "Error: Não foi possivel cadastrar o usuário."
                 });
 
@@ -66,9 +66,9 @@ class UserController {
                 });
             });
         } catch (err) {
-            return res.status(400).json({
+            return res.status(406).json({
                 error: true,
-                code: 101,
+                code: 106,
                 message: 'Error: ' + err.errors[0]
             });
         }
@@ -81,23 +81,24 @@ class UserController {
             const checkUser = await User.findOne({ _id: req.params.id });
 
             if (!checkUser) {
-                return res.status(400).json({
+                return res.status(401).json({
                     error: true,
-                    code: 101,
+                    code: 109,
                     message: "Error: Usuário não encontrado."
                 });
             }
 
             await User.deleteOne({ _id: req.params.id });
-            return res.json({
+            return res.status(200).json({
                 error: false,
                 message: "Usuário excluído com sucesso!"
             });
+
         } catch (err) {
-            return res.status(400).json({
+            return res.status(500).json({
                 error: true,
-                code: 101,
-                message: "Error: Não foi possivel apagar o usuário." + err
+                code: 110,
+                message: "Error: Não foi possivel executar a solicitação."
             });
         }
     }
