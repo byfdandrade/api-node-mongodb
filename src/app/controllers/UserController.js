@@ -4,31 +4,7 @@ import bcrypt from 'bcryptjs'
 
 class UserController {
 
-    //Listar Usuários
-    async index(req, res) {
-        try {
-            const { page = 1 } = req.query;
-            const { limit = 40 } = req.query;
-            const query = {};
-            const options = { select: "_id name cpf email", page, limit };
-
-            const users = await User.paginate(query, options);
-            return res.json({
-                error: false,
-                users: users
-            });
-
-        } catch (err) {
-            return res.status(500).json({
-                error: true,
-                code: 103,
-                message: "Error: Não foi possivel executar a solicitação."
-            });
-        }
-    }
-
-
-    //Adiciona Usuário
+    //Adicionar Usuário
     async store(req, res) {
         try {
             const checkCpf = await User.findOne({ cpf: req.body.cpf });
@@ -37,7 +13,7 @@ class UserController {
                 return res.status(401).json({
                     error: true,
                     code: 104,
-                    message: "Error: Já existe um usuário cadastrado com este CPF."
+                    message: "Error: Já existe um usuário cadastrado com este CPF!"
                 });
             }
 
@@ -56,7 +32,7 @@ class UserController {
                 if (err) return res.status(500).json({
                     error: true,
                     code: 105,
-                    message: "Error: Não foi possivel cadastrar o usuário."
+                    message: "Error: Não foi possivel cadastrar o usuário!"
                 });
 
                 return res.status(200).json({
@@ -84,7 +60,7 @@ class UserController {
                 return res.status(401).json({
                     error: true,
                     code: 109,
-                    message: "Error: Usuário não encontrado."
+                    message: "Error: Usuário não encontrado!"
                 });
             }
 
@@ -98,10 +74,68 @@ class UserController {
             return res.status(500).json({
                 error: true,
                 code: 110,
-                message: "Error: Não foi possivel executar a solicitação."
+                message: "Error: Não foi possivel executar a solicitação!"
             });
         }
     }
+
+    //Listar Usuários
+    async index(req, res) {
+        try {
+            const { page = 1 } = req.query;
+            const { limit = 40 } = req.query;
+            const query = {};
+            const options = { select: "_id name cpf email", page, limit };
+
+            const users = await User.paginate(query, options);
+            return res.json({
+                error: false,
+                users: users
+            });
+
+        } catch (err) {
+            return res.status(500).json({
+                error: true,
+                code: 103,
+                message: "Error: Não foi possivel executar a solicitação!"
+            });
+        }
+    }
+
+
+    //Visualizar Usuário
+    async show(req, res) {
+
+        try {
+            const checkUser = await User.findOne({ _id: req.params.id });
+
+            if (!checkUser) {
+                return res.status(401).json({
+                    error: true,
+                    code: 111,
+                    message: "Error: Usuário não encontrado!"
+                });
+            }
+
+            return res.status(200).json({
+                error: false,
+                user: {
+                    id: checkUser._id,
+                    name: checkUser.name,
+                    cpf: checkUser.cpf,
+                    email: checkUser.email
+                }
+            });
+            
+        } catch (err) {
+            return res.status(500).json({
+                error: true,
+                code: 112,
+                message: "Error: Não foi possivel processar a requisição."
+            });
+        }
+    }
+
 }
 
 export default new UserController();

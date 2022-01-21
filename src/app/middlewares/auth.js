@@ -1,17 +1,17 @@
 import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
 import configAuth from '../../config/auth';
-import { decode } from 'punycode';
 
 export default async (req, res, next) => {
+
     const authHeader = req.headers.authorization;
 
     try {
         if (!authHeader) {
             return res.status(401).json({
                 error: true,
-                code: 101,
-                message: "Error: Token não informado."
+                code: 113,
+                message: "Error: Token não informado!"
             })
         }
         
@@ -24,8 +24,8 @@ export default async (req, res, next) => {
     } catch (err) {
         return res.status(401).json({
             error: true,
-            code: 101,
-            message: "Error: Token inválido."
+            code: 114,
+            message: "Error: Token inválido!"
         })
     }
 

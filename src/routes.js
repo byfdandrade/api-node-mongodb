@@ -7,10 +7,11 @@ import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
+routes.post('/login', LoginController.store); //Login
 
-routes.get('/users', authMiddleware,UserController.index);
-routes.post('/login', LoginController.store);
-routes.post('/users', authMiddleware,UserController.store);
-routes.delete('/users/:id', authMiddleware, UserController.delete);
+routes.get('/users', authMiddleware,UserController.index); //Listar Usuários
+routes.get('/users/:id', authMiddleware,UserController.show); //Visualizar Usuário
+routes.post('/users', authMiddleware,UserController.store); //Cadastrar Usuário
+routes.delete('/users/:id', authMiddleware, UserController.delete); //Excluir Usuário
 
 export default routes;

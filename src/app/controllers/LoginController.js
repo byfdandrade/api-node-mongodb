@@ -9,14 +9,13 @@ class LoginController {
         const { cpf, password } = req.body;
 
         try {
-
             const checkUser = await User.findOne({ cpf: cpf });
 
             if (!checkUser) {
                 return res.status(401).json({
                     error: true,
                     code: 100,
-                    message: "Error: Usuário não encontrado."
+                    message: "Error: Usuário não encontrado!"
                 });
             }
 
@@ -24,7 +23,7 @@ class LoginController {
                 return res.status(401).json({
                     error: true,
                     code: 101,
-                    message: "Error: Senha inválida."
+                    message: "Error: Senha inválida!"
                 });
             }
 
@@ -42,7 +41,7 @@ class LoginController {
             return res.status(500).json({
                 error: true,
                 code: 102,
-                message: "Error: Não foi possivel processar a requisição."
+                message: "Error: Não foi possivel processar a requisição!"
             });
         }
 
