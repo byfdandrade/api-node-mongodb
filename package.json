@@ -4,10 +4,11 @@
   "description": "ApiNodeJS + MongoDB - by FDAndrade",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -- -r esm -r dotenv/config src/server.js",
+    "dev": "pm2 start src/server.js --watch --no-daemon --ignore-watch ./tmp --node-args=\"-r esm --inspect=0.0.0.0:9229\"",
     "build": "sucrase ./src -d ./outDir --transforms imports",
     "start": "pm2 start src/server.js --watch --no-daemon --ignore-watch ./tmp --node-args=\"-r esm --inspect=0.0.0.0:9229\""
   },
+  "type":"module",
   "keywords": [],
   "author": "FDAndrade",
   "license": "ISC",
