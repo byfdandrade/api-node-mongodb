@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import multer from "multer";
-import multerUpImgUser from "./app/middlewares/uploadImgUser";
+import multerUpImgUser from "./app/middlewares/uploadImgUser.js";
 import mongoose from 'mongoose';
-import UserModel from './app/models/User';
-import UserController from './app/controllers/UserController';
-import LoginController from './app/controllers/LoginController';
-import ProfileController from './app/controllers/ProfileController';
-import authMiddleware from './app/middlewares/auth';
-import ProfileImgController from './app/controllers/ProfileImgController';
+import UserModel from './app/models/User.js';
+import UserController from './app/controllers/UserController.js';
+import LoginController from './app/controllers/LoginController.js';
+import ProfileController from './app/controllers/ProfileController.js';
+import authMiddleware from './app/middlewares/auth.js';
+import ProfileImgController from './app/controllers/ProfileImgController.js';
 
 
 const routes = new Router();

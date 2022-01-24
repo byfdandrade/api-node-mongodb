@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
-import User from '../models/User';
-import bcrypt from 'bcryptjs'
-import config from '../../config/config';
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs/dist/bcrypt.js'
+import config from '../../config/config.js';
 
 class ProfileController {
 

@@ -1,7 +1,7 @@
-import bcrypt from "bcryptjs/dist/bcrypt";
+import bcrypt from "bcryptjs/dist/bcrypt.js";
 import jwt from "jsonwebtoken";
-import User from "../models/User";
-import configAuth from "../../config/auth";
+import User from "../models/User.js";
+import configAuth from "../../config/auth.js";
 
 class LoginController {
     async store(req, res) {

@@ -1,9 +1,9 @@
 import express from 'express';
-import routes from './routes';
+import routes from './routes.js';
 import path from 'path';
 import cors from 'cors';
-import './config/connection';
-import './helpers/funcoes';
+import './config/connection.js';
+import './helpers/funcoes.js';
 class App {
 
     constructor() {

@@ -1,5 +1,5 @@
 import fs from "fs";
-import User from "../models/User";
+import User from "../models/User.js";
 
 class ProfileImgController {
   async update(req, res) {
