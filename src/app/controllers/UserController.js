@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/User.js';
-import bcrypt from 'bbcryptjs/dist/bcrypt.js';
+import bcrypt from 'bcryptjs/dist/bcrypt.js';
 
 class UserController {
 
