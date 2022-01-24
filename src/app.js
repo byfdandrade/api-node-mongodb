@@ -3,7 +3,7 @@ import routes from './routes.js';
 import path from 'path';
 import cors from 'cors';
 import './config/connection.js';
-import './helpers/funcoes.js';
+import './helpers/funcoes.cjs';
 class App {
 
     constructor() {
