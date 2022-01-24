@@ -18,7 +18,15 @@ const User = new mongoose.Schema({
     password:{
         type: String,
         require: true
-    }
+    },
+    originalName:{
+        type: String,
+        require: true
+    },
+    fileName:{
+        type: String,
+        require: true
+    },
 }, {
     timestamps: true,
 });

@@ -1,0 +1,11 @@
+{
+    "watch": [
+        "server",
+        "client"
+    ],
+    "ignore_watch": ["tmp/*"],
+    "watch_options": {
+        "followSymlinks": false
+    }
+}
+

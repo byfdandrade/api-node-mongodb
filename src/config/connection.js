@@ -11,10 +11,13 @@ import mongoose from 'mongoose';
 class DataBase {
     constructor() {
         this.mongoDataBase();
-    } 
-
+    }
     mongoDataBase() {
         const { DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME } = process.env;
+
+        //Conexão DB Externo => mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?authSource=admin
+        //Conexão DB Local => mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin
+
         mongoose.connect(`mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`, {
             useNewUrlParser: true,
             useUnifiedTopology: true

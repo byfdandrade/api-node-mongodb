@@ -21,8 +21,8 @@ services:
     restart: always
     env_file:
      - .env
-    depends_on:
-      - db
+    #depends_on:
+    # - db
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
       - ${PORT_DEBUG_NODE}:${PORT_DEBUG_NODE}

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -- -r esm -r dotenv/config src/server.js",
     "build": "sucrase ./src -d ./outDir --transforms imports",
-    "start": "pm2 start src/server.js --watch --no-daemon --node-args=\"-r esm --inspect=0.0.0.0:9229\""
+    "start": "pm2 start src/server.js --watch --no-daemon --ignore-watch ./tmp --node-args=\"-r esm --inspect=0.0.0.0:9229\""
   },
   "keywords": [],
   "author": "FDAndrade",
@@ -21,18 +21,20 @@
   "homepage": "https://github.com/byfdandrade/api-node-mongodb#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^14.2.0",
-    "esm": "^3.2.25",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.7",
     "mongoose-paginate-v2": "^1.5.0",
-    "pm2": "^5.1.2",
+    "multer": "^1.4.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
-    "sucrase": "^3.20.3"
+    "sucrase": "^3.20.3",
+    "pm2": "^5.1.2",
+    "esm": "^3.2.25"
   }
 }
